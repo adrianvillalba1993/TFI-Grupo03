@@ -7,7 +7,7 @@ import java.util.Set;
 /**
  * Created by adrian on 22/11/2019.
  */
-public class Marca {
+public class Marca extends Operaciones{
     private Set<Vehiculo> vehiculos;
     private String nombre;
     //constructor
@@ -30,6 +30,21 @@ public class Marca {
             JOptionPane.showInputDialog("No existe la marca o fabricante");
             return false;
         }
+    }
+
+    @Override
+    public void aumentarPrecio(String modelo,double precio){
+
+    }
+
+    @Override
+    public void decrementarPrecio(double precio){
+
+    }
+
+    @Override
+    public void eliminarVehiculo(){
+
     }
 
     //Mostrar lista de vehiculos

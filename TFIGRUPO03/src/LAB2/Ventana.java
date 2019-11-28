@@ -22,6 +22,7 @@ public class Ventana extends JFrame {
         JButton boton = new JButton("agregar");
         panel.add(boton);
         add(panel);
+        //botones + escuchadores
     }
 
 }
