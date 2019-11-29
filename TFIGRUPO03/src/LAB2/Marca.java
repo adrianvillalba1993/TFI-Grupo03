@@ -2,6 +2,7 @@ package LAB2;
 
 import javax.swing.*;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 /**
@@ -9,42 +10,64 @@ import java.util.Set;
  */
 public class Marca extends Operaciones{
     private Set<Vehiculo> vehiculos;
+    private Iterator<Vehiculo> iterador;
     private String nombre;
+
     //constructor
     public Marca(String nombre){
         this.nombre = nombre;
         vehiculos = new  HashSet<Vehiculo>();
+        iterador = vehiculos.iterator();
     }
 
-    //agrego modelo vehiculo a la marca (lista de vehiculos
-    private void agregar(Vehiculo vehiculo){
-      vehiculos.add(vehiculo);
+    protected void agregar(Vehiculo modelo){
+        vehiculos.add(modelo);
     }
 
-    //equals comparando strings (devuelve boolean para crear una nueva marca si devuelve false)
-    public boolean comparar(Vehiculo modelo){
-        if(nombre.equalsIgnoreCase(modelo.getMarca())){
-            agregar(modelo);
-            return true;
-        }else{
-            JOptionPane.showInputDialog("No existe la marca o fabricante");
-            return false;
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    //utilizando el iterador recorre la coleccion y compara por modelo para incremetar o reducir el precio
+    @Override
+    public void aumentarPrecio(String modelo,double precio){
+        while(iterador.hasNext()){
+            String nom = iterador.next().getModelo();
+            if(nom.equals(modelo)){
+                double pre = iterador.next().getPrecio();
+                iterador.next().setPrecio(pre+precio);
+            }
         }
     }
 
     @Override
-    public void aumentarPrecio(String modelo,double precio){
-
+    public void decrementarPrecio(String modelo,double precio){
+        while(iterador.hasNext()){
+            String nom = iterador.next().getModelo();
+            if(nom.equals(modelo)){
+                double pre = iterador.next().getPrecio();
+                if(pre-iterador.next().getPrecio() <=0){
+                    iterador.next().setPrecio(0);
+                }else {
+                    iterador.next().setPrecio(pre - precio);
+                }
+            }
+        }
     }
-
+     //utilizando el remove del iterador elimina un objeto de la coleccion
     @Override
-    public void decrementarPrecio(double precio){
-
-    }
-
-    @Override
-    public void eliminarVehiculo(){
-
+    public void eliminarVehiculo(String modelo){
+        while(iterador.hasNext()){
+            String nom = iterador.next().getModelo();
+            if(nom.equals(modelo)){
+                iterador.remove();
+            }
+        }
     }
 
     //Mostrar lista de vehiculos

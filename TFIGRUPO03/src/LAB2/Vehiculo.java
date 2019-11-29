@@ -6,21 +6,21 @@ package LAB2;
 public class Vehiculo {
     private String marca;
     private double precio;
-    private String colores;
+
     private String modelo;
 
     public Vehiculo(){
         marca = "fiat";
         precio = 0;
-        colores ="negro";
+
         modelo = "siena";
     }
     //CAMBIAR COLORES POR UNA LISTA DE STRINGS
-    public Vehiculo(String marca ,String modelo,double precio, String colores){
+    public Vehiculo(String marca ,String modelo,double precio){
         this.marca = marca;
         this.modelo = modelo;
         this.precio = precio;
-        this.colores = colores;
+
     }
 
     public String getMarca() {
@@ -39,14 +39,6 @@ public class Vehiculo {
         this.precio = precio;
     }
 
-    public String getColores() {
-        return colores;
-    }
-
-    public void setColores(String colores) {
-        this.colores = colores;
-    }
-
     public String getModelo() {
         return modelo;
     }
@@ -60,7 +52,6 @@ public class Vehiculo {
         return "Vehiculo{" +
                 "marca='" + marca + '\'' +
                 ", precio=" + precio +
-                ", colores='" + colores + '\'' +
                 ", modelo='" + modelo + '\'' +
                 '}';
     }
