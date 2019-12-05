@@ -6,14 +6,43 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) {
-        Vehiculo v1 = new Vehiculo("fiat","uno",200000,"rojo");
-        Vehiculo v2 = new Vehiculo("fiat","siena",200000,"verde");
-        Vehiculo v3 = new Vehiculo("forza","R4",500000,"negro");
         Marca fiat = new Marca("fiat");
+        Marca forza = new Marca("forza");
+        DatosEstaticos.listaMarcas.add(fiat);
+        DatosEstaticos.listaMarcas.add(forza);
+        Vehiculo v1 = new Vehiculo("fiat","uno",200000);
+        Vehiculo v2 = new Vehiculo("fiat","siena",200000);
+        Vehiculo v3 = new Vehiculo("forza","R4",500000);
+        DatosEstaticos.listaMarcas.get(0).agregar(v1);
+        DatosEstaticos.listaMarcas.get(0).agregar(v2);
+        DatosEstaticos.listaMarcas.get(1).agregar(v3);
 
-        fiat.comparar(v1);
-          fiat.comparar(v2);
-        fiat.mostrar();
+        //  Ventana ventana = new Ventana();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("modelo");
+        String modelo = scanner.next();
+        System.out.println("Marca");
+        String marca = scanner.next();
+        String marcaNueva = Comparacion.Comparar(marca);
+        System.out.println(" Precio");
+        double precio = scanner.nextDouble();
+        Vehiculo v = new Vehiculo(marcaNueva,modelo,precio);
+        Comparacion.AgregarVehiculo(v);
+        Imprimir();
+    }
+    public static void Imprimir (){
+        for (int i = 0;i < DatosEstaticos.listaMarcas.size(); i++){
+            for (int j = 0; j < DatosEstaticos.listaMarcas.get(i).vehiculos.size();j++){
+                System.out.print(DatosEstaticos.listaMarcas.get(i).getNombre());
+                System.out.print(" | ");
+                System.out.println(DatosEstaticos.listaMarcas.get(i).vehiculos.get(j).getModelo());
+            }
+        }
+    }
 
     }
-}
+
+
+
+
+
